@@ -16,7 +16,9 @@ module.exports = function (grunt) {
   require('jit-grunt')(grunt, {
     useminPrepare: 'grunt-usemin',
     ngtemplates: 'grunt-angular-templates',
-    cdnify: 'grunt-google-cdn'
+    cdnify: 'grunt-google-cdn',
+    configureProxies: 'grunt-connect-proxy',
+    autoprefixier: 'grunt-autoprefixer'
   });
 
   // Configurable paths for the application
@@ -75,23 +77,38 @@ module.exports = function (grunt) {
         hostname: '0.0.0.0',
         livereload: 35729
       },
-      livereload: {
+      proxies: [
+        {
+          context: '/app-backend', // the context of the data service
+          host: '0.0.0.0', // wherever the data service is running
+          port: 9000, // the port that the data service is running on
+          changeOrigin: true
+        }
+        ],
+
+        livereload: {
         options: {
           open: true,
-			port:80,
+
           middleware: function (connect) {
-            return [
-              connect.static('.tmp'),
-              connect().use(
-                '/bower_components',
-                connect.static('./bower_components')
-              ),
-              connect().use(
-                '/app/styles',
-                connect.static('./app/styles')
-              ),
-              connect.static(appConfig.app)
-            ];
+            var middlewares = [];
+
+            // Setup the proxy
+            middlewares.push(require('grunt-connect-proxy/lib/utils').proxyRequest);
+
+            // Serve static files
+            middlewares.push(connect.static('.tmp'));
+            middlewares.push(connect().use(
+              '/bower_components',
+              connect.static('./bower_components')
+            ));
+            middlewares.push(connect().use(
+              '/app/styles',
+              connect.static('./app/styles')
+            ));
+            middlewares.push(connect.static(appConfig.app));
+
+            return middlewares;
           }
         }
       },
@@ -221,7 +238,7 @@ module.exports = function (grunt) {
             }
           }
       }
-    }, 
+    },
 
     // Renames files for browser caching purposes
     filerev: {
@@ -432,6 +449,7 @@ module.exports = function (grunt) {
       'clean:server',
       'wiredep',
       'concurrent:server',
+      'configureProxies:server',
       'postcss:server',
       'connect:livereload',
       'watch'
@@ -476,4 +494,6 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+  grunt.loadNpmTasks('grunt-connect-proxy');
+
 };
