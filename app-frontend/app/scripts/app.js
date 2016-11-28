@@ -12,7 +12,6 @@ angular
   .module('appFrontendApp', [
     'ui.router',
     'ngResource',
-    'ngRoute',
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
