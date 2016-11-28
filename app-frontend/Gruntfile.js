@@ -72,7 +72,7 @@ module.exports = function (grunt) {
     // The actual grunt server settings
     connect: {
       options: {
-        port: 80,
+        port: 5000,
         // Change this to '0.0.0.0' to access the server from outside.
         hostname: '0.0.0.0',
         livereload: 35729
@@ -84,9 +84,8 @@ module.exports = function (grunt) {
           port: 9000, // the port that the data service is running on
           changeOrigin: true
         }
-        ],
-
-        livereload: {
+      ],
+      livereload: {
         options: {
           open: true,
 
@@ -349,32 +348,6 @@ module.exports = function (grunt) {
           cwd: '<%= yeoman.dist %>',
           src: ['*.html'],
           dest: '<%= yeoman.dist %>'
-        }]
-      }
-    },
-
-    ngtemplates: {
-      dist: {
-        options: {
-          module: 'appFrontendApp',
-          htmlmin: '<%= htmlmin.dist.options %>',
-          usemin: 'scripts/scripts.js'
-        },
-        cwd: '<%= yeoman.app %>',
-        src: 'views/{,*/}*.html',
-        dest: '.tmp/templateCache.js'
-      }
-    },
-
-    // ng-annotate tries to make the code safe for minification automatically
-    // by using the Angular long form for dependency injection.
-    ngAnnotate: {
-      dist: {
-        files: [{
-          expand: true,
-          cwd: '.tmp/concat/scripts',
-          src: '*.js',
-          dest: '.tmp/concat/scripts'
         }]
       }
     },
