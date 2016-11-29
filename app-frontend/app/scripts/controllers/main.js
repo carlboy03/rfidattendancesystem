@@ -8,18 +8,11 @@
  * Controller of the appFrontendApp
  */
 angular.module('appFrontendApp')
-  .controller('MainCtrl' ,function ( $scope, $http, $log ) {
+  .controller('MainCtrl', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
-    $scope.rfid=[];
-    $http.get('/app-backend/count').success(function(data){
-      $scope.rfid=data;
-
-    });
-    $log.error($scope);
-
 
   });

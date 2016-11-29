@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="section">
+    <div class="row">
+      <div class="col s12">
+        <h3>Attendance for {{selectedSection.course.course_code}}-{{selectedSection.section_name}} on DATE</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <table class="centered bordered responsive-table">
+          <thead>
+          <tr>
+            <th data-field="person_name">Name</th>
+            <th data-field="person_uprm_id">Student ID</th>
+            <th data-field="attendance_status">Status</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="record in records">
+            <td>{{record.person.person_name + ' ' + record.person.person_last_name}}</td>
+            <td>{{record.person.person_uprm_id}}</td>
+            <td>{{record.attendance_status}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

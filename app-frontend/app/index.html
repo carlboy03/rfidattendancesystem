@@ -5,62 +5,65 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/materialize/bin/materialize.css" />
     <!-- endbower -->
     <!-- endbuild -->
-    <!-- build:css(.tmp) styles/main.css
-    <link rel="stylesheet" href="styles/main.css"> -->
-    <!-- endbuild -->
-    <!-- Angular Material CSS now available via Google CDN; version 1.0.7 used here -->
-   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.11.2/angular-material.min.css">
-
   </head>
   <body ng-app="appFrontendApp">
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
+    <header>
+      <div ng-controller="NavCtrl">
+        <div class="navbar-fixed">
+          <nav class="teal lighten-2" role="navigation">
+            <div class="nav-wrapper container"><a id="logo-container" ui-sref="portal" class="brand-logo"><i id="logo" class="large material-icons">group_work</i></a>
+              <ul class="right">
+                <li>
+                  <a ui-sref="/profile">
+                    <i class="circle material-icons">perm_identity</i>
+                  </a>
+                </li>
+                <li ng-show="isLoggedIn()"><a>Hi! {{user.person_name}}</a></li>
+                <li ng-hide="isLoggedIn()"><a>Hi! Guest</a></li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
 
-    <!-- Add your site or application content here -->
-    <div>
-      <h1>RFID Attendance System Demo</h1>
-      Refresh when Information has been sent.
-    </div>
-    <img ng-src="http://www.iconshock.com/img_vista/WINDOWS8/education/jpg/attendance_icon.jpg">
-    <div ng-controller="MainCtrl as main" >
-    {{rfid}}
-    </div>
+    <ui-view></ui-view>
 
-
-
+    <footer class="page-footer teal lighten-2">
+      <div class="footer-copyright">
+        <div class="container center-align white-text">
+            © 2016 - RFID Attendance System developed for UPRM
+        </div>
+      </div>
+    </footer>
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-aria/angular-aria.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-messages/angular-messages.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/materialize/bin/materialize.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
-        <!-- endbuild -->
-        <!--&lt;!&ndash; Angular Material Dependencies &ndash;&gt;-->
-       <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>-->
-       <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>-->
-       <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>-->
-
-
-       <!-- Angular Material Javascript now available via Google CDN; version 1.0.7 used here -->
-       <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.7/angular-material.min.js"></script>
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/nav.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/about.js"></script>
+    <script src="scripts/controllers/home.js"></script>
+    <script src="scripts/controllers/section.js"></script>
+    <!-- endbuild -->
 </body>
 </html>
