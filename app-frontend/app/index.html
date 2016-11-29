@@ -17,14 +17,37 @@
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
-    <div class="container-fluid">
-      <div class="section">
-        <div class="row">
-          <ui-view></ui-view>
+    <header>
+      <div ng-controller="NavCtrl">
+        <div class="navbar-fixed">
+          <nav class="teal lighten-2" role="navigation">
+            <div class="nav-wrapper container"><a id="logo-container" ui-sref="portal" class="brand-logo"><i id="logo" class="large material-icons">group_work</i></a>
+              <ul class="right">
+                <li>
+                  <a ui-sref="/profile">
+                    <i class="circle material-icons">perm_identity</i>
+                  </a>
+                </li>
+                <li ng-show="isLoggedIn()"><a>Hi! {{user.person_name}}</a></li>
+                <li ng-hide="isLoggedIn()"><a>Hi! Guest</a></li>
+              </ul>
+            </div>
+          </nav>
         </div>
       </div>
-    </div>
+    </header>
+
+    <main>
+      <ui-view></ui-view>
+    </main>
+
+    <footer class="teal lighten-2">
+      <div class="footer-copyright">
+        <div class="container center-align white-text">
+            © 2016 - RFID Attendance System developed for UPRM
+        </div>
+      </div>
+    </footer>
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
@@ -38,9 +61,11 @@
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/nav.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/about.js"></script>
     <script src="scripts/controllers/home.js"></script>
+    <script src="scripts/controllers/section.js"></script>
     <!-- endbuild -->
 </body>
 </html>
