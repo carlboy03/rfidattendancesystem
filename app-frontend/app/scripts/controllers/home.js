@@ -2,7 +2,7 @@
 
 /**
  * @ngdoc function
- * @name appFrontendApp.controller:MainCtrl
+ * @name appFrontendApp.controller:HomeCtrl
  * @description
  * # HomeCtrl
  * Controller of the home state
