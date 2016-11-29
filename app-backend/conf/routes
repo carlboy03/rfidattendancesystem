@@ -18,3 +18,6 @@ POST     /count                      controllers.CountController.count
 GET     /app-backend/count                      controllers.CountController.countGet
 
 GET /app-backend/                   controllers.CountController.countGet
+
+GET    /app-backend/student/:person_id                   controllers.PersonController.getStudent(person_id: Integer)
+GET    /app-backend/students                                controllers.PersonController.getStudents
