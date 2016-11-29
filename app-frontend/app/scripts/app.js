@@ -25,6 +25,10 @@ angular
         templateUrl: 'views/home.html',
         controller: 'HomeCtrl'
       })
+      .state('section', {
+        url: '/section/:id',
+        templateUrl: 'views/section.html',
+        controller: 'HomeCtrl'
       });
     $urlRouterProvider.otherwise('/');
   })
