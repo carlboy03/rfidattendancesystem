@@ -29,6 +29,10 @@ angular
         url: '/section/:id',
         templateUrl: 'views/section.html',
         controller: 'SectionCtrl',
+      })
+      .state('about', {
+        url: '/about',
+        templateUrl: 'views/about.html',
       });
     $urlRouterProvider.otherwise('/');
   })
