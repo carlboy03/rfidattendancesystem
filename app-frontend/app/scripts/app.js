@@ -36,24 +36,27 @@ angular
       });
     $urlRouterProvider.otherwise('/');
   })
-  .factory('data', ['$http', function($http){
+  .factory('data', ['$http', function(){
     var data = {};
     data.setCurrentSection = function(section){
       data.currentSection = section;
     };
     data.hasSelectedSection = function(){
-      if(data.currentSection == null)
-        return false;
-      else
-        return true;
-    };
-    data.isLoggedIn = function(){
-      if(data.user == null){
+      if(data.currentSection === null) {
         return false;
       }
-      else
+      else {
         return true;
-    }
+      }
+    };
+    data.isLoggedIn = function(){
+      if(data.user === null){
+        return false;
+      }
+      else {
+        return true;
+      }
+    };
     data.user = {
       person_id: 1,
       person_name: 'Manuel',
@@ -231,5 +234,28 @@ angular
       }
     ];
     return data;
+  }])
+  .factory('auth', ['$http', function($http){
+    var auth = {};
+    auth.currentUser = function(){
+      if(auth.isLoggedIn()){
+        return auth.user;
+      }
+      return null;
+    };
+    auth.isLoggedIn = function(){
+      if(!auth.user){
+        return false;
+      }
+      else {
+        return true;
+      }
+    };
+    auth.login = function(user){
+      return $http.post('/app-backend/login', user).success(function(data){
+        auth.user = data;
+      });
+    };
+    return auth;
   }]);
 

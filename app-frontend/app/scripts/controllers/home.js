@@ -12,7 +12,7 @@ angular.module('appFrontendApp')
     $scope.user = data.user;
     $scope.sections = data.sections;
     $scope.setSection = function(section){
-      if(section == null){ return; }
+      if(section === null){ return; }
       data.setCurrentSection(section);
       $state.go('section', {id: section.section_id});
     };
