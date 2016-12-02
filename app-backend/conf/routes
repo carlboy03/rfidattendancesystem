@@ -23,3 +23,5 @@ GET    /app-backend/student/:person_id                   controllers.PersonContr
 
 
 POST     /app-backend/login                      controllers.LoginController.login
+
+GET     /app-backend/section/:professor_id      controllers.PersonController.getProfessorSections(professor_id: Integer)
