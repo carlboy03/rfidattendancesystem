@@ -20,7 +20,9 @@
           <tr ng-repeat="record in records">
             <td>{{record.person.person_name + ' ' + record.person.person_last_name}}</td>
             <td>{{record.person.person_uprm_id}}</td>
-            <td>{{record.attendance_status}}</td>
+            <!– TODO: verify if the attendance status is being changed after edit–>
+            <td ng-show="!record.attendance_status" ng-click="record.attendance_status = true"><i class="small material-icons red-text text-lighten-1" style="cursor: pointer">mode_edit</i></td>
+            <td ng-show="record.attendance_status"><i class="small material-icons cyan-text text-lighten-1">done_all</i></td>
           </tr>
           </tbody>
         </table>
