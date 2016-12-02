@@ -8,8 +8,8 @@
  * Controller of the home state
  */
 angular.module('appFrontendApp')
-  .controller('HomeCtrl', ['$scope', 'data', '$state', function ($scope, data, $state) {
-    $scope.user = data.user;
+  .controller('HomeCtrl', ['$scope', 'data', 'auth', '$state', function ($scope, data, auth, $state) {
+    $scope.currentUser = auth.currentUser;
     $scope.sections = data.sections;
     $scope.setSection = function(section){
       if(section === null){ return; }

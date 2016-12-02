@@ -57,14 +57,6 @@ angular
         return true;
       }
     };
-    data.user = {
-      person_id: 1,
-      person_name: 'Manuel',
-      person_last_name: 'Rodriguez',
-      person_type: 0,
-      person_uprm_id: '802864000',
-      person_rfid_id: 'changeme',
-    };
     data.sections = [
       {
         section_id: 1,
@@ -258,4 +250,3 @@ angular
     };
     return auth;
   }]);
-
