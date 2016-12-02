@@ -8,7 +8,7 @@
  * Controller of the navbar
  */
 angular.module('appFrontendApp')
-  .controller('NavCtrl', ['$scope', 'data', function ($scope, data) {
-    $scope.user = data.user;
-    $scope.isLoggedIn = data.isLoggedIn;
+  .controller('NavCtrl', ['$scope', 'auth', function ($scope, auth) {
+    $scope.currentUser = auth.currentUser;
+    $scope.isLoggedIn = auth.isLoggedIn;
   }]);

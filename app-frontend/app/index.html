@@ -28,7 +28,7 @@
                     <i class="circle material-icons">perm_identity</i>
                   </a>
                 </li>
-                <li ng-show="isLoggedIn()"><a>Hi! {{user.person_name}}</a></li>
+                <li ng-show="isLoggedIn()"><a>Hi! {{ currentUser().person_name }}</a></li>
                 <li ng-hide="isLoggedIn()"><a>Hi! Guest</a></li>
               </ul>
             </div>
