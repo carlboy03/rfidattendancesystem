@@ -40,7 +40,7 @@ CREATE TABLE sections (
 INSERT INTO sections(section_name, course_id, section_term, professor_id)
 VALUES('020', 5, 'A2016', 12),
   ('020', 20, 'A2016', 12),
-  ('040', 5, 'A2016', 1),
+  ('040', 17, 'A2016', 1),
   ('040', 10, 'A2016', 12),
   ('060', 5, 'A2016', 12);
 # --- !Downs
