@@ -10,23 +10,23 @@ import javax.persistence.Entity;
 public class Section extends Model {
     public int section_id;
     public String section_name;
-    public String course_id;
-    public int section_term;
+    public int course_id;
+    public String section_term;
     public String professor_id;
-    
+
 
     public Section() {
         int section_id;
         String section_name;
-        String course_id;
-        int section_term;
+        int course_id;
+        String section_term;
         String professor_id;
     }
 
     public Section(int section_id,
                    String section_name,
-                   String course_id,
-                   int section_term,
+                   int course_id,
+                   String section_term,
                    String professor_id) {
         this.section_id = section_id;
         this.section_name = section_name;
@@ -52,19 +52,19 @@ public class Section extends Model {
         this.section_name = section_name;
     }
 
-    public String getCourse_id() {
+    public int getCourse_id() {
         return course_id;
     }
 
-    public void setCourse_id(String course_id) {
+    public void setCourse_id(int course_id) {
         this.course_id = course_id;
     }
 
-    public int getSection_term() {
+    public String getSection_term() {
         return section_term;
     }
 
-    public void setSection_term(int section_term) {
+    public void setSection_term(String section_term) {
         this.section_term = section_term;
     }
 
