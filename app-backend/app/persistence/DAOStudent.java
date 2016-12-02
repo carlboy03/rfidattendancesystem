@@ -26,12 +26,12 @@ public class DAOStudent implements DAOGeneric{
             statement = connection.prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                students.add(new Person( rs.getInt("person_id"),
-                        rs.getString("person_name"),
-                        rs.getString("person_last_name"),
-                        rs.getInt("person_type"),
-                        rs.getString("person_uprm_id"),
-                        rs.getString("person_rfid")));
+//                students.add(new Person( rs.getInt("person_id"),
+//                        rs.getString("person_name"),
+//                        rs.getString("person_last_name"),
+//                        rs.getInt("person_type"),
+//                        rs.getString("person_uprm_id"),
+//                        rs.getString("person_rfid")));
             }
             rs.close();
         }
@@ -75,12 +75,12 @@ public class DAOStudent implements DAOGeneric{
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-                person = new Person( rs.getInt("person_id"),
-                        rs.getString("person_name"),
-                        rs.getString("person_last_name"),
-                        rs.getInt("person_type"),
-                        rs.getString("person_uprm_id"),
-                        rs.getString("person_rfid"));
+//                person = new Person( rs.getInt("person_id"),
+//                        rs.getString("person_name"),
+//                        rs.getString("person_last_name"),
+//                        rs.getInt("person_type"),
+//                        rs.getString("person_uprm_id"),
+//                        rs.getString("person_rfid"));
             }
             rs.close();
         }
