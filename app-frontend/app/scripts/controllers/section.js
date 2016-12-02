@@ -12,4 +12,5 @@ angular.module('appFrontendApp')
     $scope.user = data.user;
     $scope.selectedSection = data.currentSection;
     $scope.records = data.records;
+    $scope.date = new Date();
   }]);
