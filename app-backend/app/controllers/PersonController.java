@@ -69,7 +69,7 @@ public class PersonController extends Controller {
         if (students.size()==0){
             students.add( new Person());
             System.out.println("Person does not Exist");
-            return status(404, "Student does not Exist");
+            return status(400, "Student does not Exist");
         }
 
         return ok(toJson(students));
@@ -121,7 +121,7 @@ public class PersonController extends Controller {
         if (students.size()==0){
             students.add( new Person());
             System.out.println("Person does not Exist");
-            return status(404, "Professor does not Exist");
+            return status(400, "Professor does not Exist");
         }
 
         return ok(toJson(students));
