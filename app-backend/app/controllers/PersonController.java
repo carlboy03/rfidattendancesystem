@@ -32,16 +32,19 @@ public class PersonController extends Controller {
 
         try{
             String sql = "select * " +
-                    "from person where person_type=1";
+                    "from person where person_id=? AND person_type=0";
             statement = connection.prepareStatement(sql);
+            statement.setInt(1, person_id);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
-//                students.add(new Person( rs.getInt("person_id"),
-//                        rs.getString("person_name"),
-//                        rs.getString("person_last_name"),
-//                        rs.getInt("person_type"),
-//                        rs.getString("person_uprm_id"),
-//                        rs.getString("person_rfid")));
+                students.add(new Person( rs.getInt("person_id"),
+                        rs.getString("person_name"),
+                        rs.getString("person_last_name"),
+                        rs.getInt("person_type"),
+                        rs.getString("person_uprm_id"),
+                        rs.getString("person_rfid"),
+                        rs.getString("person_email"),
+                        rs.getString("person_password")));
             }
             rs.close();
         }
@@ -66,6 +69,59 @@ public class PersonController extends Controller {
         if (students.size()==0){
             students.add( new Person());
             System.out.println("Person does not Exist");
+            return status(404, "Student does not Exist");
+        }
+
+        return ok(toJson(students));
+    }
+
+    public Result getProfessor( int person_id){
+        ArrayList<Person> students=new ArrayList<Person>();
+        Person person=null;
+        Connection connection = db.getConnection();
+
+        PreparedStatement statement = null;
+
+        try{
+            String sql = "select * " +
+                    "from person where person_id=? AND person_type=1";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, person_id);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                students.add(new Person( rs.getInt("person_id"),
+                        rs.getString("person_name"),
+                        rs.getString("person_last_name"),
+                        rs.getInt("person_type"),
+                        rs.getString("person_uprm_id"),
+                        rs.getString("person_rfid"),
+                        rs.getString("person_email"),
+                        rs.getString("person_password")));
+            }
+            rs.close();
+        }
+        catch(Exception e){
+            System.out.println("Failed SQL Extraction");
+            e.printStackTrace();
+
+        }
+        finally{
+            try{
+                if(statement!=null)
+                    statement.close();
+            }catch(SQLException se){
+            }
+            try{
+                if(connection!=null)
+                    connection.close();
+            }catch(SQLException se){
+                se.printStackTrace();
+            }
+        }
+        if (students.size()==0){
+            students.add( new Person());
+            System.out.println("Person does not Exist");
+            return status(404, "Professor does not Exist");
         }
 
         return ok(toJson(students));
