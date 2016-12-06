@@ -23,6 +23,8 @@ public class PersonController extends Controller {
         this.db = db;
     }
 
+
+
     public Result getStudent( int person_id){
         ArrayList<Person> students=new ArrayList<Person>();
         Person person=null;
