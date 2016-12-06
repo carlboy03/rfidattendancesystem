@@ -17,8 +17,7 @@ CREATE TABLE attendance (
   attendance_section_id BIGINT NOT NULL
 );
 
-INSERT INTO enrollment(enrollment_student_id, enrollment_section_id)
-VALUES(2,1),
+INSERT INTO enrollment(enrollment_student_id, enrollment_section_id)VALUES(2,1),
   (2,4),
   (3,3),
   (3,1),
@@ -44,75 +43,61 @@ VALUES(2,1),
   (4,1),
   (4,3);
 
-INSERT INTO attendance(atendance_status,
-                       attendance_date,
-                       attendance_student_id,
-                       attendance_section_session,
-                       attendance_section_id)
-    VALUES
-      (TRUE,"08/16/2016",2,1,1),
-      (TRUE,"08/18/2016",2,2,1),
-      (FALSE,"08/23/2016",2,3,1),
-      (TRUE,"08/25/2016",2,4,1),
-
-      (TRUE,"08/16/2016",2,1,4),
-      (FALSE,"08/18/2016",2,2,4),
-      (FALSE,"08/23/2016",2,3,4),
-      (TRUE,"08/25/2016",2,4,4),
-
-      (TRUE,"08/16/2016",3,1,3),
-      (FALSE,"08/18/2016",3,2,3),
-      (FALSE,"08/23/2016",3,3,3),
-      (TRUE,"08/25/2016",3,4,3),
-
-      (TRUE,"08/16/2016",3,1,1),
-      (TRUE,"08/18/2016",3,2,1),
-      (FALSE,"08/23/2016",3,3,1),
-      (TRUE,"08/25/2016",3,4,1),
-
-      (TRUE,"08/16/2016",4,1,5),
-      (TRUE,"08/18/2016",4,2,5),
-      (FALSE,"08/23/2016",4,3,5),
-      (FALSE,"08/25/2016",4,4,5),
-
-      (TRUE,"08/16/2016",4,1,2),
-      (TRUE,"08/18/2016",4,2,2),
-      (FALSE,"08/23/2016",4,3,2),
-      (TRUE,"08/25/2016",4,4,2),
-
-      (TRUE,"08/16/2016",5,1,1),
-      (TRUE,"08/18/2016",5,2,1),
-      (TRUE,"08/23/2016",5,3,1),
-      (TRUE,"08/25/2016",5,4,1),
-
-      (TRUE,"08/16/2016",5,1,3),
-      (TRUE,"08/18/2016",5,2,3),
-      (FALSE,"08/23/2016",5,3,3),
-      (TRUE,"08/25/2016",5,4,3),
-
-      (TRUE,"08/16/2016",6,1,1),
-      (TRUE,"08/18/2016",6,2,1),
-      (FALSE,"08/23/2016",6,3,1),
-      (TRUE,"08/25/2016",6,4,1),
-
-      (FALSE,"08/16/2016",6,1,5),
-      (FALSE,"08/18/2016",6,2,5),
-      (FALSE,"08/23/2016",6,3,5),
-      (FALSE,"08/25/2016",6,4,5),
-
-      (TRUE,"08/16/2016",7,1,2),
-      (TRUE,"08/18/2016",7,2,2),
-      (FALSE,"08/23/2016",7,3,2),
-      (TRUE,"08/25/2016",7,4,2),
-
-      (TRUE,"08/16/2016",7,1,3),
-      (TRUE,"08/18/2016",7,2,3),
-      (FALSE,"08/23/2016",7,3,3),
-      (TRUE,"08/25/2016",7,4,3)
-     ;
+INSERT INTO attendance(attendance_status,
+                       attendance_date, attendance_student_id,
+                       attendance_section_session, attendance_section_id)
+VALUES
+      (TRUE,DATE '2016-08-16' ,2,1,1),
+      (TRUE,DATE '2016-08-18',2,2,1),
+      (FALSE,DATE '2016-08-23',2,3,1),
+      (TRUE,DATE '2016-08-25',2,4,1),
+      (TRUE,DATE '2016-08-16',2,1,4),
+      (FALSE,DATE '2016-08-18',2,2,4),
+      (FALSE,DATE '2016-08-23',2,3,4),
+      (TRUE,DATE '2016-08-25',2,4,4),
+      (TRUE,DATE '2016-08-16',3,1,3),
+      (FALSE,DATE '2016-08-18',3,2,3),
+      (FALSE,DATE '2016-08-23',3,3,3),
+      (TRUE,DATE '2016-08-25',3,4,3),
+      (TRUE,DATE '2016-08-16',3,1,1),
+      (TRUE,DATE '2016-08-18',3,2,1),
+      (FALSE,DATE '2016-08-23',3,3,1),
+      (TRUE,DATE '2016-08-25',3,4,1),
+      (TRUE,DATE '2016-08-16',4,1,5),
+      (TRUE,DATE '2016-08-18',4,2,5),
+      (FALSE,DATE '2016-08-23',4,3,5),
+      (FALSE,DATE '2016-08-25',4,4,5),
+      (TRUE,DATE '2016-08-16',4,1,2),
+      (TRUE,DATE '2016-08-18',4,2,2),
+      (FALSE,DATE '2016-08-23',4,3,2),
+      (TRUE,DATE '2016-08-25',4,4,2),
+      (TRUE,DATE '2016-08-16',5,1,1),
+      (TRUE,DATE '2016-08-18',5,2,1),
+      (TRUE,DATE '2016-08-23',5,3,1),
+      (TRUE,DATE '2016-08-25',5,4,1),
+      (TRUE,DATE '2016-08-16',5,1,3),
+      (TRUE,DATE '2016-08-18',5,2,3),
+      (FALSE,DATE '2016-08-23',5,3,3),
+      (TRUE,DATE '2016-08-25',5,4,3),
+      (TRUE,DATE '2016-08-16',6,1,1),
+      (TRUE,DATE '2016-08-18',6,2,1),
+      (FALSE,DATE '2016-08-23',6,3,1),
+      (TRUE,DATE '2016-08-25',6,4,1),
+      (FALSE,DATE '2016-08-16',6,1,5),
+      (FALSE,DATE '2016-08-18',6,2,5),
+      (FALSE,DATE '2016-08-23',6,3,5),
+      (FALSE,DATE '2016-08-25',6,4,5),
+      (TRUE,DATE '2016-08-16',7,1,2),
+      (TRUE,DATE '2016-08-18',7,2,2),
+      (FALSE,DATE '2016-08-23',7,3,2),
+      (TRUE,DATE '2016-08-25',7,4,2),
+      (TRUE,DATE '2016-08-16',7,1,3),
+      (TRUE,DATE '2016-08-18',7,2,3),
+      (FALSE,DATE '2016-08-23',7,3,3),
+      (TRUE,DATE '2016-08-25',7,4,3);
 
 
-      # --- !Downs
+# --- !Downs
 
 DROP TABLE attendance;
 

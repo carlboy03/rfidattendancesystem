@@ -99,7 +99,7 @@ public class RFIDController extends Controller {
             return status(401, "RFID record does not Exist");
         }
 
-        return ok(toJson(person));
+        return ok("RFID record does Exist");
 
 
     }
