@@ -98,7 +98,7 @@ public class RFIDController extends Controller {
             System.out.println("RFID Record does not Exist");
             return status(401, "RFID record does not Exist");
         }
-
+        this.rfid=null;
         return ok("RFID record does Exist");
 
 
