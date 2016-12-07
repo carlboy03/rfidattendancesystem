@@ -77,6 +77,72 @@ public class PersonController extends Controller {
         return ok(toJson(students));
     }
 
+    public Result attendanceInformation( int section_id){
+        ArrayList<AttendanceInformation> attendanceReport=new ArrayList<AttendanceInformation>();
+        Person person=null;
+        Attendance attendance= null;
+        Connection connection = db.getConnection();
+
+        PreparedStatement statement = null;
+
+        try{
+            String sql = "select distinct attendance.*, person.* from attendance " +
+            " join enrollment on attendance_section_id=enrollment_section_id " +
+            " join person on person_id=attendance_student_id "+
+            " join sections on enrollment_section_id=section_id " +
+            " join course on sections.course_id=course.course_id "+
+            " where section_id=?  order by person_id";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, section_id);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                person = new Person( rs.getInt("person_id"),
+                        rs.getString("person_name"),
+                        rs.getString("person_last_name"),
+                        rs.getInt("person_type"),
+                        rs.getString("person_uprm_id"),
+                        rs.getString("person_rfid"),
+                        rs.getString("person_email"),
+                        rs.getString("person_password"));
+                attendance = new Attendance(
+                        rs.getInt("attendance_id"),
+                        rs.getBoolean("attendance_status"),
+                        rs.getString("attendance_date"),
+                        rs.getInt("attendance_student_id"),
+                        rs.getInt("attendance_section_session"),
+                        rs.getString("attendance_comment"),
+                        rs.getInt("attendance_section_id") );
+
+                attendanceReport.add( new AttendanceInformation(person, attendance));
+            }
+            rs.close();
+        }
+        catch(Exception e){
+            System.out.println("Failed SQL Extraction");
+            e.printStackTrace();
+
+        }
+        finally{
+            try{
+                if(statement!=null)
+                    statement.close();
+            }catch(SQLException se){
+            }
+            try{
+                if(connection!=null)
+                    connection.close();
+            }catch(SQLException se){
+                se.printStackTrace();
+            }
+        }
+        if (attendanceReport.size()==0){
+            attendanceReport.add( new AttendanceInformation());
+            System.out.println("Section Attendance does not exist");
+            return status(400, "Section Attendance does not exist");
+        }
+
+        return ok(toJson(attendanceReport));
+    }
     public Result getProfessor( int person_id){
         ArrayList<Person> students=new ArrayList<Person>();
         Person person=null;

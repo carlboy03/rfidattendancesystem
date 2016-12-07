@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 
 public class Attendance extends Model {
     public int attendance_id;
-    public String attendance_status;
+    public Boolean attendance_status;
     public String attendance_date;
     public int attendance_student_id;
     public int attendance_section_session;
@@ -18,7 +18,7 @@ public class Attendance extends Model {
 
     public Attendance(){
         attendance_id= 0;
-        attendance_status="";
+        attendance_status=false;
         attendance_date="";
         attendance_student_id=0;
         attendance_section_session=0;
@@ -26,7 +26,7 @@ public class Attendance extends Model {
         attendance_section_id=0;
     }
 
-    public Attendance(int attendance_id, String attendance_status,
+    public Attendance(int attendance_id, Boolean attendance_status,
                       String attendance_date, int attendance_student_id,
                       int attendance_section_session, String attendance_comment,
                       int attendance_section_id) {
@@ -47,11 +47,11 @@ public class Attendance extends Model {
         this.attendance_id = attendance_id;
     }
 
-    public String getAttendance_status() {
+    public Boolean getAttendance_status() {
         return attendance_status;
     }
 
-    public void setAttendance_status(String attendance_status) {
+    public void setAttendance_status(Boolean attendance_status) {
         this.attendance_status = attendance_status;
     }
 
