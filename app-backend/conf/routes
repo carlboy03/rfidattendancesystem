@@ -27,4 +27,7 @@ GET    /app-backend/professor/:person_id                   controllers.PersonCon
 POST     /app-backend/login                      controllers.LoginController.login
 
 GET     /app-backend/section/:professor_id      controllers.PersonController.getProfessorSections(professor_id: Integer)
+GET     /app-backend/attendance/:section_id      controllers.PersonController.attendanceInformation(section_id: Integer)
+
+
 POST     /app-backend/rfidScanned                      controllers.RFIDController.RfidScanned
