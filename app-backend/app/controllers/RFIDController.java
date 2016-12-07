@@ -52,6 +52,7 @@ public class RFIDController extends Controller {
         JsonNode json = request().body().asJson();
         this.rfid=json.findValue("rfid").textValue();
 
+        System.out.println("Received POST");
         Person person=null;
         Connection connection = db.getConnection();
 
