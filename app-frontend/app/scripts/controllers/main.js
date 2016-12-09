@@ -12,9 +12,9 @@ angular.module('appFrontendApp')
     $scope.user = {};
     $scope.login = function(){
       if($scope.user.email === null || $scope.user.password === null){ return; }
-      auth.login($scope.user).success(function(){
+      auth.login($scope.user).success(function(data){
         $scope.user = {};
-        $state.go('home');
+        $state.go('home', {id: data.person_id});
       });
     };
   }]);
