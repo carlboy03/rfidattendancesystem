@@ -10,10 +10,10 @@
 angular.module('appFrontendApp')
   .controller('HomeCtrl', ['$scope', 'data', 'auth', '$state', function ($scope, data, auth, $state) {
     $scope.currentUser = auth.currentUser;
-    $scope.sections = data.sections;
-    $scope.setSection = function(section){
-      if(section === null){ return; }
-      data.setCurrentSection(section);
-      $state.go('section', {id: section.section_id});
+    $scope.currentSections = data.currentSections;
+    $scope.getSection = function(item){
+      data.selectCourse(item.course);
+      data.selectSection(item.section);
+      $state.go('section', {id: item.section.section_id});
     };
   }]);
