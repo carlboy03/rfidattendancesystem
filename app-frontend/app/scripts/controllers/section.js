@@ -8,9 +8,10 @@
  * Controller of the section state
  */
 angular.module('appFrontendApp')
-  .controller('SectionCtrl', ['$scope', 'data', function ($scope, data) {
-    $scope.user = data.user;
-    $scope.selectedSection = data.currentSection;
-    $scope.records = data.records;
+  .controller('SectionCtrl', ['$scope', 'data', 'auth', function ($scope, data, auth) {
+    $scope.currentUser = auth.currentUser;
+    $scope.currentSection = data.currentSection;
+    $scope.selectedCourse = data.selectedCourse;
+    $scope.selectedSection = data.selectedSection;
     $scope.date = new Date();
   }]);

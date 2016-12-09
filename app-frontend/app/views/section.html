@@ -2,7 +2,7 @@
   <div class="section">
     <div class="row">
       <div class="col s12">
-        <h3>Attendance for {{selectedSection.course.course_code}}-{{selectedSection.section_name}} on {{date | date:'MMM dd, yyyy'}}</h3>
+        <h5>Attendance for {{selectedCourse()}}-{{selectedSection()}} on {{date | date:'MMM dd, yyyy'}}</h5>
         </div>
       </div>
     </div>
@@ -11,18 +11,19 @@
         <table class="centered bordered responsive-table">
           <thead>
           <tr>
+            <th data-field="date">Date</th>
             <th data-field="person_name">Name</th>
             <th data-field="person_uprm_id">Student ID</th>
             <th data-field="attendance_status">Status</th>
           </tr>
           </thead>
           <tbody>
-          <tr ng-repeat="record in records">
+          <tr ng-repeat="record in currentSection()">
+            <td>{{record.attendance.attendance_date}}</td>
             <td>{{record.person.person_name + ' ' + record.person.person_last_name}}</td>
             <td>{{record.person.person_uprm_id}}</td>
-            <!– TODO: verify if the attendance status is being changed after edit–>
-            <td ng-show="!record.attendance_status" ng-click="record.attendance_status = true"><i class="small material-icons red-text text-lighten-1" style="cursor: pointer">mode_edit</i></td>
-            <td ng-show="record.attendance_status"><i class="small material-icons cyan-text text-lighten-1">done_all</i></td>
+            <td ng-show="!record.attendance.attendance_status" ng-click="record.attendance_status = true"><i class="small material-icons red-text text-lighten-1" style="cursor: pointer">mode_edit</i></td>
+            <td ng-show="record.attendance.attendance_status"><i class="small material-icons cyan-text text-lighten-1">done_all</i></td>
           </tr>
           </tbody>
         </table>
