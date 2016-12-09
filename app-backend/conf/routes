@@ -33,3 +33,4 @@ GET     /app-backend/attendance/:section_id/student/:student_id      controllers
 
 
 POST     /app-backend/rfidScanned                      controllers.RFIDController.RfidScanned
+#POST     /app-backend/rfidScanned                      controllers.RFIDController.RfidScannedSection1

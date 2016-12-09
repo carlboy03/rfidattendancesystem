@@ -105,6 +105,95 @@ public class RFIDController extends Controller {
 
     }
 
+    public Result RfidScannedSection1() {
+
+        JsonNode json = request().body().asJson();
+        this.rfid=json.findValue("rfid").textValue();
+        int currentSection=3;
+        System.out.println("Received POST");
+        Person person=null;
+        Connection connection = db.getConnection();
+
+        PreparedStatement statement = null;
+
+        try{
+            String sql ="SELECT DISTINCT person.* from enrollment "+
+                    "join person on person_id=enrollment_student_id "+
+                    "where enrollment_section_id=? and person_rfid= ?";
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, currentSection);
+            statement.setString(2, rfid);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                person = new Person( rs.getInt("person_id"),
+                        rs.getString("person_name"),
+                        rs.getString("person_last_name"),
+                        rs.getInt("person_type"),
+                        rs.getString("person_uprm_id"),
+                        rs.getString("person_rfid"),
+                        rs.getString("person_email"),
+                        rs.getString("person_password"));
+            }
+
+            rs.close();
+        }
+        catch(Exception e){
+            System.out.println("Failed SQL Extraction");
+            e.printStackTrace();
+
+        }
+        finally{
+            try{
+                if(statement!=null)
+                    statement.close();
+            }catch(SQLException se){
+            }
+            try{
+                if(connection!=null)
+                    connection.close();
+            }catch(SQLException se){
+                se.printStackTrace();
+            }
+        }
+        if (person==null){
+            System.out.println("RFID Record does not Exist");
+            return status(401, "RFID record does not Exist");
+        }
+        try{
+            String sql ="INSERT INTO attendance (attendance_status, attendance_date, attendance_student_id, " +
+                    "attendance_section_session, attendance_comment, attendance_section_id) " +
+                    "VALUES (TRUE, current_date, ?, 2,'No comment' ,?  );";
+            connection = db.getConnection();
+            statement = connection.prepareStatement(sql);
+            statement.setInt(1, person.getPerson_id());
+            statement.setInt(2,currentSection );
+            statement.executeUpdate();
+        }
+        catch(Exception e){
+            System.out.println("Failed SQL Extraction");
+            e.printStackTrace();
+
+        }
+        finally{
+            try{
+                if(statement!=null)
+                    statement.close();
+            }catch(SQLException se){
+            }
+            try{
+                if(connection!=null)
+                    connection.close();
+            }catch(SQLException se){
+                se.printStackTrace();
+            }
+        }
+        this.rfid=null;
+        return ok("RFID record does Exist");
+
+
+    }
+
+
 
 
 
