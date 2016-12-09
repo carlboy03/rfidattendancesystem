@@ -102,6 +102,7 @@ public class LoginController extends Controller {
         if (person==null){
             person=( new Person());
             System.out.println("Person does not Exist");
+            return status(401, "Not Authorized");
         }
 
         return ok(toJson(person));
