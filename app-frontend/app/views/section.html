@@ -19,7 +19,7 @@
           </thead>
           <tbody>
           <tr ng-repeat="record in currentSection()">
-            <td>{{record.attendance.attendance_date}}</td>
+            <td>{{record.attendance.attendance_date | amUtc | amDateFormat:'MMMM Do YYYY'}}</td>
             <td><a ng-click="getStudent(record)">{{record.person.person_name + ' ' + record.person.person_last_name}}</a></td>
             <td>{{record.person.person_uprm_id}}</td>
             <td ng-show="!record.attendance.attendance_status" ng-click="record.attendance_status = true"><i class="small material-icons red-text text-lighten-1" style="cursor: pointer">mode_edit</i></td>
