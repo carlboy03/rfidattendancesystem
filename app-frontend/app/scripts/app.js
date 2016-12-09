@@ -40,6 +40,16 @@ angular
           }]
         }
       })
+      .state('student', {
+        url: '/section/:section_id/student/:id',
+        templateUrl: 'views/student.html',
+        controller: 'StudentCtrl',
+        resolve: {
+          studentPromise: ['data', '$stateParams', function(data, $stateParams){
+            return data.getStudent($stateParams.section_id, $stateParams.id);
+          }]
+        }
+      })
       .state('about', {
         url: '/about',
         templateUrl: 'views/about.html',
@@ -66,6 +76,12 @@ angular
     };
     data.selectedSectionId = function(){
       return localStorage.getObject('section_id');
+    };
+    data.selectStudent = function(student){
+      localStorage.setObject('student', student);
+    };
+    data.selectedStudent = function(){
+      return localStorage.getObject('student');
     };
     // Home View
     data.getSections = function(id){
@@ -104,6 +120,27 @@ angular
     data.currentSection = function(){
       if(data.hasCurrentSection()){
         return data.section;
+      }
+      return null;
+    };
+    // Student View
+    data.getStudent = function(section_id, id){
+      return $http.get('/app-backend/attendance/'+section_id+'/student/'+id).success(function(student){
+        console.log(student);
+        data.student = student;
+      });
+    };
+    data.hasCurrentStudent = function(){
+      if(!data.student){
+        return false;
+      }
+      else {
+        return true;
+      }
+    };
+    data.currentStudent = function(){
+      if(data.hasCurrentStudent()){
+        return data.student;
       }
       return null;
     };

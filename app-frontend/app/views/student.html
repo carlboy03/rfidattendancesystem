@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="section">
+    <div class="row">
+      <div class="col s12">
+        <h5>Attendance for {{selectedStudent().person_name + ' ' + selectedStudent().person_last_name}} in {{selectedCourse()}}-{{selectedSection()}}</h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <table class="centered bordered responsive-table">
+          <thead>
+          <tr>
+            <th data-field="date">Date</th>
+            <th data-field="person_uprm_id">Student ID</th>
+            <th data-field="attendance_status">Status</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr ng-repeat="record in currentStudent()">
+            <td>{{record.attendance.attendance_date}}</td>
+            <td>{{record.person.person_uprm_id}}</td>
+            <td ng-show="!record.attendance.attendance_status" ng-click="record.attendance_status = true"><i class="small material-icons red-text text-lighten-1" style="cursor: pointer">mode_edit</i></td>
+            <td ng-show="record.attendance.attendance_status"><i class="small material-icons cyan-text text-lighten-1">done_all</i></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
