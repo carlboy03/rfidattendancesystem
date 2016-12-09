@@ -169,6 +169,9 @@ angular
         localStorage.setObject('user', data);
       });
     };
+    auth.logout = function(){
+      localStorage.setObject('user', null);
+    };
     return auth;
   }]);
 
