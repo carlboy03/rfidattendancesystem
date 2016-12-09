@@ -87,11 +87,13 @@ public class PersonController extends Controller {
 
         try{
             String sql = "select distinct attendance.*, person.* from attendance " +
-            " join enrollment on attendance_section_id=enrollment_section_id " +
-            " join person on person_id=attendance_student_id "+
-            " join sections on enrollment_section_id=section_id " +
-            " join course on sections.course_id=course.course_id "+
-            " where section_id=?  order by person_id";
+                    " join enrollment on attendance_section_id=enrollment_section_id " +
+                    " join person on person_id=attendance_student_id "+
+                    " join sections on enrollment_section_id=section_id " +
+                    " join course on sections.course_id=course.course_id "+
+                    " where section_id=?  " +
+                    "and attendance_date=current_date" +
+                    "order by person_id";
             statement = connection.prepareStatement(sql);
             statement.setInt(1, section_id);
             ResultSet rs = statement.executeQuery();
