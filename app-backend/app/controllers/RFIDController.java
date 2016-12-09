@@ -100,6 +100,7 @@ public class RFIDController extends Controller {
             return status(401, "RFID record does not Exist");
         }
         this.rfid=null;
+        System.out.println("RFID Record Exist");
         return ok("RFID record does Exist");
 
 
@@ -109,7 +110,7 @@ public class RFIDController extends Controller {
 
         JsonNode json = request().body().asJson();
         this.rfid=json.findValue("rfid").textValue();
-        int currentSection=3;
+        int currentSection=7;
         System.out.println("Received POST");
         Person person=null;
         Connection connection = db.getConnection();
