@@ -86,18 +86,20 @@ public class PersonController extends Controller {
         PreparedStatement statement = null;
 
         try{
-            String sql = "select distinct attendance.*, person.* from attendance " +
-                    " join enrollment on attendance_section_id=enrollment_section_id " +
-                    " join person on person_id=attendance_student_id "+
-                    " join sections on enrollment_section_id=section_id " +
-                    " join course on sections.course_id=course.course_id "+
-                    " where section_id=?  " +
-                    "and attendance_date=current_date " +
-                    "order by person_id";
+            String sql = "select distinct person.*, attendance.* from attendance "+
+            "join enrollment on attendance_section_id=enrollment_section_id "+
+            "join person on person_id=attendance_student_id "+
+            "join sections on enrollment_section_id=section_id " +
+            "join course on sections.course_id=course.course_id "+
+            "where section_id= ? "+
+            "and attendance_date=current_date ";
             statement = connection.prepareStatement(sql);
             statement.setInt(1, section_id);
+
+
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
+
                 person = new Person( rs.getInt("person_id"),
                         rs.getString("person_name"),
                         rs.getString("person_last_name"),
@@ -114,8 +116,22 @@ public class PersonController extends Controller {
                         rs.getInt("attendance_section_session"),
                         rs.getString("attendance_comment"),
                         rs.getInt("attendance_section_id") );
+                boolean duplicate=false;
+                if (attendanceReport.size()==0){
+                    attendanceReport.add(new AttendanceInformation(person, attendance));
 
-                attendanceReport.add( new AttendanceInformation(person, attendance));
+                }
+                else {
+                    for (int i = 0; i < attendanceReport.size(); i++) {
+                        System.out.println(attendanceReport.get(i).getPerson().getPerson_id());
+                        if (attendanceReport.get(i).getPerson().getPerson_id()==person.getPerson_id()) {
+                            duplicate = true;
+                        }
+                    }
+                    if (!duplicate) {
+                        attendanceReport.add(new AttendanceInformation(person, attendance));
+                    }
+                }
             }
             rs.close();
         }
