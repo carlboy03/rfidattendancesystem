@@ -14,6 +14,7 @@ angular.module('appFrontendApp')
     $scope.getSection = function(item){
       data.selectCourse(item.course);
       data.selectSection(item.section);
+      data.selectSectionId(item.section);
       $state.go('section', {id: item.section.section_id});
     };
   }]);

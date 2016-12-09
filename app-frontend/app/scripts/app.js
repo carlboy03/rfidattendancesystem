@@ -61,6 +61,12 @@ angular
     data.selectedSection = function(){
       return localStorage.getObject('section_name');
     };
+    data.selectSectionId = function(section){
+      localStorage.setObject('section_id', section.section_id);
+    };
+    data.selectedSectionId = function(){
+      return localStorage.getObject('section_id');
+    };
     // Home View
     data.getSections = function(id){
       return $http.get('/app-backend/section/'+id).success(function(sections){
