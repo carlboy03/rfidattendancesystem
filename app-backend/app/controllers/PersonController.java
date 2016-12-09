@@ -92,7 +92,7 @@ public class PersonController extends Controller {
                     " join sections on enrollment_section_id=section_id " +
                     " join course on sections.course_id=course.course_id "+
                     " where section_id=?  " +
-                    "and attendance_date=current_date" +
+                    "and attendance_date=current_date " +
                     "order by person_id";
             statement = connection.prepareStatement(sql);
             statement.setInt(1, section_id);
