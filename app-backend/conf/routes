@@ -32,5 +32,5 @@ GET     /app-backend/attendance/:section_id      controllers.PersonController.at
 GET     /app-backend/attendance/:section_id/student/:student_id      controllers.PersonController.attendanceForStuedentInSection(section_id: Integer, student_id: Integer)
 
 
-POST     /app-backend/rfidScanned                      controllers.RFIDController.RfidScanned
-#POST     /app-backend/rfidScanned                      controllers.RFIDController.RfidScannedSection1
+#POST     /app-backend/rfidScanned                      controllers.RFIDController.RfidScanned
+POST     /app-backend/rfidScanned                      controllers.RFIDController.RfidScannedSection1
